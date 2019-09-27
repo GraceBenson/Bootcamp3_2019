@@ -25,7 +25,7 @@ module.exports = function(req, res, next) {
         if(error) console.log('error', error.message);
 
         if (response.statusCode == 200) {
-          var temp = JSON.parse(body);
+          var temp = JSON.parse(body).results[0];
 
         /*Save the coordinates in req.results -> 
           this information will be accessed by listings.server.model.js 
@@ -33,7 +33,7 @@ module.exports = function(req, res, next) {
 
           Assumption: if we get a result we will take the coordinates from the first result returned
         */
-          req.results = temp.results[0];
+          req.results = temp.geometry;
         }
         next();
     });
