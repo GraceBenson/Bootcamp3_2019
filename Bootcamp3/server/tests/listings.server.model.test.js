@@ -40,6 +40,15 @@ describe('Listing Schema Unit Tests', function() {
      */
     this.timeout(10000);
 
+    it('error when address is not provided', function (done) {
+      new Listing({
+        address: listing.address
+      }).save(function(err){
+        should.exist(err);
+        done();
+      })
+    });
+
     it('saves properly when code and name provided', function(done){
       new Listing({
         name: listing.name, 
